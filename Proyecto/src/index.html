@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Proyecto SIGSW</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=geometry&key=AIzaSyAzIWXVBQ9R4x5yS_CDfH2D3rxdZAdVHsc">
+    </script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/stopwatch.js"></script>
+
+</head>
+
+<body>
+<div id="left">
+    <main id="map_frame"></main>
+    <div id="stats">
+        <h1>STATS</h1>
+    </div>
+</div>
+
+<div id="right">
+    <aside id="botonera">
+        <div id="stopwatch">
+            <h1>Cronómetro</h1>
+            <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+            <button id="button-start">Start</button>
+            <button id="button-stop">Stop</button>
+            <button id="button-reset">Reset</button>
+        </div>
+        <div id="toggle">
+            <input type="checkbox" id="toggleCurvas" name="toggleCurvas" checked/>
+            <label for="toggleCurvas"> Curvas de nivel </label> <br>
+            <input type="checkbox" id="toggleCaminos" name="toggleCaminos" checked/>
+            <label for="toggleCaminos"> Caminos </label><br>
+            <input type="checkbox" id="toggleProtected" name="toggleProtected" checked/>
+            <label for="toggleProtected"> Lugares protegidos </label><br>
+            <input type="checkbox" id="toggleNombres" name="toggleNombres" checked/>
+            <label for="toggleNombres"> Nombres Geográficos </label><br>
+        </div>
+
+    </aside>
+</div>
+</body>
+</html>
