@@ -1,0 +1,7 @@
+API de Maps: Botones, toggle
+Puntos geográficos: Rutas de montaña y puntos con fotos
+Repositorio WMS: http://www.ign.es/wms-inspire/ign-base?request=GetCapabilities
+Servicios de Maps: altitud y charts
+
+KML example:
+https://developers.google.com/maps/documentation/javascript/examples/layer-kml-features?hl=es-419
