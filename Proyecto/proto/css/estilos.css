@@ -1,0 +1,24 @@
+.google-maps {
+    position: relative;
+    padding-bottom: 75%;
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+#chronotime {
+    font-size: 3.6em;
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 2em;
+    margin: 2em 0 0 0;
+}

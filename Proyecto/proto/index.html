@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+
+    <title>SigWeb 2017</title>
+    <link rel="stylesheet" href="css/uikit.min.css"/>
+    <link rel="stylesheet" href="css/estilos.css"/>
+
+
+    <script src="js/jquery.js"></script>
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+    <script src="js/codigos.js"></script>
+    <script defer src="main.js"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=geometry&key=AIzaSyAzIWXVBQ9R4x5yS_CDfH2D3rxdZAdVHsc"></script>
+</head>
+
+<body>
+
+<nav class="uk-navbar">
+
+    <a class="uk-navbar-brand" href="#"><img alt="SigWeb" src="img/sigweb_logo.png"></a>
+
+    <ul class="uk-navbar-nav uk-hidden-small">
+        <li class="uk-active"><a href="">Inicio</a></li>
+        <li><a href="">Un punto de menú</a></li>
+        <li class="uk-parent" data-uk-dropdown="" aria-expanded="false">
+            <a href="">Punto desplegable</a>
+
+            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" style="top: 40px; left: 0;" tabindex="">
+                <ul class="uk-nav uk-nav-navbar">
+                    <li><a href="#">Pto1</a></li>
+                    <li><a href="#">Pto2</a></li>
+                    <li class="uk-nav-header">Cabecera</li>
+                    <li><a href="#">Pto3</a></li>
+                    <li><a href="#">Pto4</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="#">Pto5</a></li>
+                </ul>
+            </div>
+
+        </li>
+    </ul>
+
+
+    <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
+        <div class="uk-button-group">
+            <a class="uk-button uk-button-danger" href="#">Enlace</a>
+            <button class="uk-button uk-button-danger">Botón</button>
+        </div>
+    </div>
+
+</nav>
+
+<hr>
+
+<div class="uk-grid">
+    <div class="uk-width-3-4">
+        <div class="google-maps" id="map_frame">
+            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11571.337676577872!2d-5.6563222!3d43.526645499999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1506085247889" width="800" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+        </div>
+    </div>
+
+    <div class="uk-width-1-4">
+        <div class="uk-panel-box">
+            <h3 class="uk-panel-title">Botonera</h3>
+
+            <ul class="uk-nav uk-nav-side" data-uk-nav="{multiple:true}">
+                <li class="uk-parent">
+                    <a href="#">Capas WMS</a>
+                    <ul class="uk-nav-sub">
+                        <li><input type="checkbox" id="toggleCurvas" name="toggleCurvas" checked/> Curvas de nivel</li>
+                        <li><input type="checkbox" id="toggleCaminos" name="toggleCaminos" checked/> Caminos</li>
+                        <li><input type="checkbox" id="toggleProtected" name="toggleProtected" checked/> Lugares
+                            protegidos
+                        </li>
+                        <li><input type="checkbox" id="toggleNombres" name="toggleNombres" checked/> Nombres geográficos
+                        </li>
+                    </ul>
+                </li>
+                <li class="uk-parent">
+                    <a href="#">KML (WIP)</a>
+                    <ul class="uk-nav-sub">
+                        <li><a href="#">WIP</a></li>
+                        <li><a href="#">WIP</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="uk-panel-box">
+            <h3 class="uk-panel-title"><i class="uk-icon-clock-o"></i> Cronómetro</h3>
+
+
+            <form name="chronoForm">
+                <input class="uk-button uk-button-large uk-align-right" type="button" name="reset" value="Reiniciar"
+                       onClick="chronoReset()"/>
+                <p class=" uk-block-secondary uk-contrast uk-block-large uk-text-center" id="chronotime">0:00:00:00</p>
+                <input class="uk-button uk-width-1-1 uk-button-large" type="button" name="startstop" value="Iniciar"
+                       onClick="chronoStart()"/>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <div class="uk-container uk-container-center uk-text-center">
+        <p>SigWeb 2017</p>
+        <p>Máster de Ingeniería Web - Uniovi</p>
+        <p>Autores: <a href="#">Héctor Riopedre López</a> - <a href="#">Diego Cotera Gonzalo</a></p>
+    </div>
+</footer>
+</body>
+</html>
