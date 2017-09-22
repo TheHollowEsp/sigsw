@@ -1,6 +1,9 @@
 var map;
+var infowindow;
 var centro;
 var markerActual = null;
+var bandera = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+
 
 // Inits de WMS
 var WMS_URL = 'http://www.ign.es/wms-inspire/ign-base?';
@@ -21,15 +24,15 @@ function initMap() {
     };
     map = new google.maps.Map(document.getElementById("map_frame"), misOpciones);
 
-    google.maps.event.addListener(map, 'click', function (event) {
-        if (markerActual) markerActual.setMap(null);
-        markerActual = situarMarcador(event.latLng);
-    });
-
     var kmlLayer = new google.maps.KmlLayer({
         url: 'https://www.google.com/maps/d/kml?mid=1WO-FP4tIazhob0X4DMuNwCR6DIs&forcekml=1',
-        suppressInfoWindows: false, // Permite mostrar nuestros iconos (fotos incluidas)
+        suppressInfoWindows: true, // Permite mostrar nuestros iconos (fotos incluidas)
         map: map
+    });
+
+    google.maps.event.addListener(kmlLayer, 'click', function (event) {
+        if (markerActual) markerActual.setMap(null);
+        markerActual = situarMarcador(event.latLng);
     });
 
     var overlayOptions = {
@@ -93,22 +96,61 @@ function situarMarcador(localizacion) { // Crea un marcador y lo pone
         position: localizacion,
         animation: google.maps.Animation.DROP,
         title: "Tu selección",
+        icon: bandera,
+        draggable: true,
         map: map
     });
-    marker.addListener('click', markerClick); // Listener de click para funcion markerClick()
+    var html = "<div id='content'>\n" +
+        "  <div id='siteNotice'></div>\n" +
+        "  <h1 id='firstHeading' class='firstHeading'>Corredor</h1>\n" +
+        "  <div id='bodyContent'>\n" +
+        "    <div>\n" +
+        "      <form id='inform' enctype='multipart/form-data' onsubmit='return submitFoto()'>\n" +
+        "        <table><tbody>" +
+        "        <tr><td align='right'><label class='uk-form-label' for='name'>Nombre: </label> </td>\n" +
+        "        <td><input class='uk-input' id='name' type='text' size='12' />\n" +
+        "        </tr>" +
+        "        <tr><td align='right'>" +
+        "        <label class='uk-form-label' for='title'>Title: </label> </td>\n" +
+        "        <td><input class='uk-input' id='title' type='text' size='12' /> </td>\n" +
+        "        </tr><tr><td align='right'>" +
+        "        <label class='uk-form-label' for='file'>Photo: </label> </td>\n" +
+        "        <td><input class='uk-input' type='file' id='inputFile' /> </td>\n" +
+        "        </tr><tr><td align='right'></td><td><input id='submit' value='Add' type='submit'></td></tr>" +
+        "        <tr><td align='right'></td><td><img id='image_upload_preview' style='max-width: 150px; max-height:150px;' src='http://placehold.it/100x100' alt='your image' /></td></tr>" +
+        "        </tbody></table>" +
+        "      </form>\n" +
+        "    </div>\n" +
+        "  </div>\n" +
+        "</div>";
+    if (infowindow) infowindow.close();
+    infowindow = new google.maps.InfoWindow({
+        content: html, maxWidth: 400
+    });
+    infowindow.open(map, marker);
+    $("#inputFile").change(function () {
+        readURL(this);
+    });
+    marker.addListener('click', function() {
+        infowindow.open(map, marker);
+    });
     return marker;
 }
 
-function markerClick() {  // Aqui poner la funcion para guardar foto, provisional
-    if (markerActual.getAnimation() !== null) {
-        markerActual.setAnimation(null);
-    } else {
-        markerActual.setAnimation(google.maps.Animation.BOUNCE);
-    }
+function submitFoto() {
+    // Subir foto
+    return false;
 }
 
-
-
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#image_upload_preview').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 
 
