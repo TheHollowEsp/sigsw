@@ -10,62 +10,40 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
     <script src="js/codigos.js"></script>
-    <script defer src="main.js"></script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?callback=initMap&libraries=geometry&key=AIzaSyAzIWXVBQ9R4x5yS_CDfH2D3rxdZAdVHsc"></script>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script src="js/main.js"></script>
 </head>
 
 <body>
 
 <nav class="uk-navbar">
-
     <a class="uk-navbar-brand" href="#"><img alt="SigWeb" src="img/sigweb_logo.png"></a>
-
     <ul class="uk-navbar-nav uk-hidden-small">
         <li class="uk-active"><a href="">Inicio</a></li>
-        <li><a href="">Un punto de menú</a></li>
-        <li class="uk-parent" data-uk-dropdown="" aria-expanded="false">
-            <a href="">Punto desplegable</a>
-
-            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" style="top: 40px; left: 0;" tabindex="">
-                <ul class="uk-nav uk-nav-navbar">
-                    <li><a href="#">Pto1</a></li>
-                    <li><a href="#">Pto2</a></li>
-                    <li class="uk-nav-header">Cabecera</li>
-                    <li><a href="#">Pto3</a></li>
-                    <li><a href="#">Pto4</a></li>
-                    <li class="uk-nav-divider"></li>
-                    <li><a href="#">Pto5</a></li>
-                </ul>
-            </div>
-
-        </li>
+        <li><a href="">Ayuda</a></li>
     </ul>
-
-
-    <div class="uk-navbar-content uk-navbar-flip  uk-hidden-small">
-        <div class="uk-button-group">
-            <a class="uk-button uk-button-danger" href="#">Enlace</a>
-            <button class="uk-button uk-button-danger">Botón</button>
-        </div>
-    </div>
-
 </nav>
 
 <hr>
 
 <div class="uk-grid">
-    <div class="uk-width-3-4">
+    <div class="uk-width-3-4 uk-height-3-4">
         <div class="google-maps" id="map_frame">
-            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d11571.337676577872!2d-5.6563222!3d43.526645499999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2ses!4v1506085247889" width="800" height="300" frameborder="0" style="border:0" allowfullscreen></iframe> -->
+
         </div>
     </div>
 
     <div class="uk-width-1-4">
         <div class="uk-panel-box">
             <h3 class="uk-panel-title">Botonera</h3>
+
+            <label for="kmls">Rutas: </label>
+            <select id="kmls">
+                <option value='1'>Ruta local</option>
+                <option value='2'>Camino de Santiago (Gijón - Luarca)</option>
+                <option value='3'>Ruta montañosa</option>
+            </select>
 
             <ul class="uk-nav uk-nav-side" data-uk-nav="{multiple:true}">
                 <li class="uk-parent">
@@ -83,19 +61,18 @@
                     </ul>
                 </li>
                 <li class="uk-parent">
-                    <a href="#">KML (WIP)</a>
+                    <a href="#">Capa KML</a>
                     <ul class="uk-nav-sub">
-                        <li><a href="#">WIP</a></li>
-                        <li><a href="#">WIP</a></li>
+                        <li><input type="checkbox" id="toggleKML" name="toggleKML" checked/> <label
+                                for="toggleKML">Capa de ruta</label></li>
                     </ul>
+
                 </li>
             </ul>
         </div>
 
         <div class="uk-panel-box">
             <h3 class="uk-panel-title"><i class="uk-icon-clock-o"></i> Cronómetro</h3>
-
-
             <form name="chronoForm">
                 <input class="uk-button uk-button-large uk-align-right" type="button" name="reset" value="Reiniciar"
                        onClick="chronoReset()"/>
@@ -104,8 +81,17 @@
                        onClick="chronoStart()"/>
             </form>
         </div>
-
+        <div class="uk-panel-box">
+            <h3 class="uk-panel-title"></i> Instrucciones </h3>
+            <p>En los desplegables de la botonera se encuentran las rutas (KML) y los overlays del mapa (WMS). Ambos pueden ser activados y desactivados a placer.</p>
+            <p>Al hacer click izquierdo sobre un punto de la ruta, saldrá un marcador con una InfoView que permitirá incluir los datos necesarios para indicar que una persona ha pasado por el punto. Estos datos se guardarán en localStorage y se recrearán al volver a cargar la página.</p>
+            <p>Al hacer click derecho sobre dos puntos consecutivos del mapa, se trazará una línea. Justo debajo del mapa aparecerá el perfil de altitudes de dicha línea. La línea se puede borrar haciendo click izquierdo en algún punto fuera de las rutas.</p>
+        </div>
     </div>
+
+    <div id="elevation_chart" class="uk-width-3-4">
+    </div>
+
 </div>
 
 <footer>
@@ -115,5 +101,8 @@
         <p>Autores: <a href="#">Héctor Riopedre López</a> - <a href="#">Diego Cotera Gonzalo</a></p>
     </div>
 </footer>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?library=geocoding&callback=initMap&key=AIzaSyAzIWXVBQ9R4x5yS_CDfH2D3rxdZAdVHsc">
+</script>
 </body>
 </html>
